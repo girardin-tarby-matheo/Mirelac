@@ -1,0 +1,16 @@
+---
+interface Props {
+  entetes?: string[];
+  lignes: string[][];
+  class?: string;
+}
+const { entetes, lignes, class: classe } = Astro.props;
+---
+<div class:list={["tableau-wrap", classe]}>
+  <table>
+    {entetes && <thead><tr>{entetes.map((t) => <th>{t}</th>)}</tr></thead>}
+    <tbody>
+      {lignes.map((l) => <tr>{l.map((c) => <td set:html={c} />)}</tr>)}
+    </tbody>
+  </table>
+</div>

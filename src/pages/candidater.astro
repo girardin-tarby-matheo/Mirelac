@@ -1,0 +1,70 @@
+---
+import Base from "../layouts/Base.astro";
+import PageTete from "../components/PageTete.astro";
+import SectionTete from "../components/SectionTete.astro";
+import Frise from "../components/Frise.astro";
+import Losanges from "../components/Losanges.astro";
+import { lien } from "../lib/url";
+
+const etapes = [
+  { date: "1<sup>er</sup> mars", titre: "Ouverture des candidatures", texte: "Dépôt du dossier en ligne ou par chouette." },
+  { date: "15 avril", titre: "Clôture", texte: "Aucun dossier n’est accepté après minuit, même si la chouette était en retard." },
+  { date: "Mai", titre: "Entretien du Miroir", texte: "Un échange de vingt minutes avec deux enseignants, à distance, par le miroir de communication de votre école ou de la mairie magique la plus proche." },
+  { date: "Avant le 21 juin", titre: "Lettre d’admission", texte: "Elle arrive par chouette, scellée de cire bleue. C’est elle qui ouvre le reflet de l’étang." },
+  { date: "Juillet", titre: "Inscription définitive", texte: "Confirmation de votre place, règlement des frais de scolarité (450 gallions par an), déclaration de votre animal." },
+  { date: "1<sup>er</sup> septembre, à l’aube", titre: "Rentrée des Reflets", texte: "Le premier saut.", fort: true },
+];
+const faq = [
+  ["Je viens d’une famille moldue. Puis-je candidater ?", "Oui, et vous ne serez pas le seul. Si vous n’avez pas suivi de cursus magique secondaire, la Prépa Reflet (six mois) vous permet de vous mettre à niveau avant d’intégrer l’Année du Prisme."],
+  ["Faut-il choisir sa faculté au moment de la candidature ?", "Non. Tous les étudiants suivent d’abord l’Année du Prisme, commune à tous. Le choix se fait à la fin de la première année, en s’aidant de la couleur de son reflet dans l’étang."],
+  ["Que se passe-t-il si je perds ma lettre d’admission ?", "Prévenez immédiatement <a href=\"mailto:admissions@mirelac.mag\">admissions@mirelac.mag</a>. Une seconde lettre peut être émise, mais une seule fois. Sans lettre, l’étang ne s’ouvre pas, et nous déclinons toute responsabilité quant à l’état de vos vêtements."],
+  ["Je ne sais pas nager. Est-ce un problème ?", "Aucun. On ne nage jamais dans l’étang de Comper : on le traverse. Le saut dure moins d’une seconde et l’on arrive parfaitement sec."],
+  ["Existe-t-il des bourses ?", "Oui. Des bourses sur critères sociaux couvrent jusqu’à la totalité des frais de scolarité. La demande se fait avec l’inscription définitive, en juillet."],
+  ["Mes parents peuvent-ils m’accompagner le jour de la rentrée ?", "Oui, jusqu’au bord de l’étang. Seuls les porteurs d’une lettre peuvent traverser. Un café d’accueil est servi aux familles au château de Comper pendant le saut."],
+];
+---
+<Base titre="Candidater" description="Votre reflet vous attend : calendrier, pièces du dossier et questions fréquentes pour candidater à Mirelac.">
+  <PageTete surtitre="Candidater" titre="Votre reflet vous attend." accroche="Les candidatures ouvrent chaque 1<sup>er</sup> mars." />
+
+  <section class="section">
+    <div class="conteneur grid items-start gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+      <p class="lead lettrine reveal">Envoyez votre dossier par chouette ou via le formulaire en ligne. S’il est retenu, vous recevrez votre lettre d’admission avant le solstice d’été. Gardez-la sur vous le jour de la rentrée : sans elle, l’étang reste un simple étang, et vous en ressortirez trempé.</p>
+      <aside class="carte reveal">
+        <h3>Pièces du dossier</h3>
+        <Losanges items={[
+          "Une pièce d’identité du monde magique",
+          "Les relevés de notes des deux dernières années de cursus magique secondaire (ou l’attestation de Prépa Reflet)",
+          "Une lettre de motivation d’une page",
+          "Une lettre de recommandation d’un enseignant",
+          `Le cas échéant, la demande d’autorisation pour un animal (voir la <a href="${lien("/animaux")}">règlementation des animaux</a>)`,
+        ]} />
+        <a class="btn" href="mailto:admissions@mirelac.mag?subject=Candidature%20Mirelac">Déposer mon dossier</a>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--nuit vague-haut vague-bas">
+    <div class="conteneur etroit">
+      <SectionTete surtitre="Les étapes" titre="Du dossier au premier saut" centre ornement />
+      <Frise etapes={etapes} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur etroit">
+      <SectionTete surtitre="Foire aux questions" titre="Vous vous demandez peut-être…" />
+      <div class="faq reveal">
+        {faq.map(([q, r]) => (
+          <details>
+            <summary>{q}</summary>
+            <p set:html={r} />
+          </details>
+        ))}
+      </div>
+      <div class="reveal mt-10 flex flex-wrap gap-3.5">
+        <a class="btn btn--bleu" href={lien("/contact")}>Poser une autre question</a>
+        <a class="btn btn--contour" href={lien("/formations")}>Voir les formations</a>
+      </div>
+    </div>
+  </section>
+</Base>

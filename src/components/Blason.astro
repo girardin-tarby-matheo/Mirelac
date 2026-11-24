@@ -1,0 +1,65 @@
+---
+// Blason de Mirelac : château de Comper au-dessus de l'eau, palais de cristal en reflet.
+---
+<svg class="blason onde" viewBox="0 0 300 360" role="img" aria-labelledby="blason-titre">
+  <title id="blason-titre">Blason de Mirelac</title>
+  <defs>
+    <clipPath id="ecu"><path d="M20 20 H280 V190 C280 275 215 322 150 345 C85 322 20 275 20 190 Z" /></clipPath>
+    <linearGradient id="eau" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2E4D7A" /><stop offset="1" stop-color="#182C4C" />
+    </linearGradient>
+    <filter id="pierre">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="11" />
+      <feColorMatrix values="0 0 0 0 .55  0 0 0 0 .52  0 0 0 0 .47  0 0 0 .9 0" />
+      <feComposite in2="SourceGraphic" operator="in" />
+    </filter>
+  </defs>
+  <g clip-path="url(#ecu)">
+    <rect width="300" height="360" fill="#F9EFE1" />
+    <!-- Château de Comper -->
+    <path fill="#253F66" d="M96 184 V104 h5 v-8 h5 v8 h4 v-8 h5 v8 h4 v-8 h3 V122 H136 V92 h4 v-7 h5 v7 h4 v-7 h4 v7 h4 v-7 h5 v7 h3 V122 H178 V96 h3 v8 h5 v-8 h4 v8 h5 v-8 h5 v8 V184 Z" />
+    <path fill="#F9EFE1" d="M142 184 V164 a8 8 0 0 1 16 0 V184 Z" />
+    <rect x="105" y="132" width="6" height="12" rx="3" fill="#F9EFE1" />
+    <rect x="189" y="132" width="6" height="12" rx="3" fill="#F9EFE1" />
+    <rect x="147" y="102" width="6" height="12" rx="3" fill="#F9EFE1" />
+    <!-- Le lac -->
+    <path fill="url(#eau)" d="M20 185 C45 175 65 195 90 185 S135 175 160 185 S205 195 230 185 S270 178 280 185 V360 H20 Z" />
+    <!-- Reflet : palais de cristal -->
+    <g fill="#F9EFE1" fill-opacity=".9" stroke="#D6C16F" stroke-width=".8">
+      <path d="M110 190 H190 V232 L150 250 L110 232 Z" fill-opacity=".55" />
+      <path d="M96 190 H122 V242 L109 292 L96 242 Z" />
+      <path d="M178 190 H204 V242 L191 292 L178 242 Z" />
+      <path d="M136 190 H164 V236 L150 318 L136 236 Z" />
+    </g>
+    <g stroke="#D6C16F" stroke-width=".6" fill="none" opacity=".9">
+      <path d="M109 190 V292 M191 190 V292 M150 190 V318 M136 236 L150 250 L164 236 M96 242 L109 250 L122 242 M178 242 L191 250 L204 242" />
+    </g>
+  </g>
+  <!-- Épée de Lancelot sur la ligne d'eau -->
+  <g>
+    <path d="M58 185 L72 181 H222 V189 H72 Z" fill="#E9DDB0" stroke="#9C843A" stroke-width="1" />
+    <path d="M74 185 H220" stroke="#9C843A" stroke-width=".7" />
+    <rect x="222" y="172" width="6" height="26" rx="2" fill="#D6C16F" stroke="#9C843A" />
+    <rect x="228" y="181.5" width="20" height="7" rx="2" fill="#6E4A2A" />
+    <circle cx="253" cy="185" r="5.5" fill="#D6C16F" stroke="#9C843A" />
+  </g>
+  <!-- Médaillons des facultés -->
+  <g>
+    <circle cx="60" cy="120" r="23" fill="#253F66" stroke="#D6C16F" stroke-width="2.5" />
+    <use href="#sym-miroir" x="45" y="105" width="30" height="30" color="#F9EFE1" />
+    <circle cx="240" cy="120" r="23" fill="#E54D1F" stroke="#D6C16F" stroke-width="2.5" />
+    <use href="#sym-etoile" x="225" y="105" width="30" height="30" color="#F9EFE1" />
+    <circle cx="150" cy="300" r="21" fill="#D6C16F" stroke="#F9EFE1" stroke-width="2.5" />
+    <use href="#sym-ecu" x="136" y="286" width="28" height="28" color="#253F66" />
+    <!-- Le quatrième médaillon, martelé -->
+    <g class="martele">
+      <title>Ce médaillon n’a jamais existé.</title>
+      <circle cx="150" cy="50" r="21" fill="#b9ae9c" stroke="#8d8373" stroke-width="2.5" />
+      <circle cx="150" cy="50" r="21" fill="#fff" filter="url(#pierre)" />
+      <path d="M138 42 l7 6 -3 7 8 4 M157 38 l-4 8 6 5 M146 64 l4 -6 7 3" fill="none" stroke="#6f665a" stroke-width="1" />
+    </g>
+  </g>
+  <!-- Bordure -->
+  <path d="M20 20 H280 V190 C280 275 215 322 150 345 C85 322 20 275 20 190 Z" fill="none" stroke="#D6C16F" stroke-width="5" />
+  <path d="M29 29 H271 V190 C271 268 210 312 150 335 C90 312 29 268 29 190 Z" fill="none" stroke="#9C843A" stroke-width=".8" />
+</svg>

@@ -1,0 +1,5 @@
+---
+interface Props { gauche?: boolean }
+const { gauche } = Astro.props;
+---
+<div class:list={["ornement", { "ornement--gauche": gauche }]} aria-hidden="true"></div>

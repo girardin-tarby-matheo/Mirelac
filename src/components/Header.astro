@@ -1,0 +1,41 @@
+---
+import { navigation } from "../data/navigation";
+import { lien, estActif } from "../lib/url";
+
+const courant = Astro.url.pathname;
+---
+<a class="saut" href="#contenu">Aller au contenu</a>
+<header class="entete">
+  <div class="entete__inner">
+    <a class="logo" href={lien("/")} aria-label="Mirelac, accueil">
+      <svg aria-hidden="true"><use href="#sym-monogramme" /></svg><span>Mirelac</span>
+    </a>
+    <button class="burger" type="button" aria-expanded="false" aria-controls="nav-principale" aria-label="Ouvrir le menu"><span></span></button>
+    <nav class="nav" id="nav-principale" aria-label="Navigation principale">
+      <ul class="nav__liste">
+        {navigation.map((item, i) =>
+          item.enfants ? (
+            <li class:list={["nav__item", { "nav__item--actif": item.enfants.some((e) => estActif(courant, e.href)) }]}>
+              <button class="nav__bouton" type="button" aria-expanded="false" aria-controls={`sous-${i}`}>
+                {item.label}
+                <svg class="chevron" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+              </button>
+              <ul class="sous-menu" id={`sous-${i}`}>
+                {item.enfants.map((e) => (
+                  <li><a href={lien(e.href)} aria-current={estActif(courant, e.href) ? "page" : undefined}>{e.label}</a></li>
+                ))}
+              </ul>
+            </li>
+          ) : (
+            <li class="nav__item">
+              <a class="nav__lien" href={lien(item.href)} aria-current={estActif(courant, item.href!) ? "page" : undefined}>{item.label}</a>
+            </li>
+          )
+        )}
+        <li class="nav__cta">
+          <a class="btn" href={lien("/candidater")} aria-current={estActif(courant, "/candidater") ? "page" : undefined}>Candidater</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

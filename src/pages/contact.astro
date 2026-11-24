@@ -1,0 +1,89 @@
+---
+import Base from "../layouts/Base.astro";
+import PageTete from "../components/PageTete.astro";
+import SectionTete from "../components/SectionTete.astro";
+import Tableau from "../components/Tableau.astro";
+
+const profils = ["Futur étudiant", "Parent", "Étudiant actuel", "Ancien élève", "Partenaire", "Autre"];
+const objets = ["Admissions", "Logement", "Facultés et formations", "Partenariats", "Animaux", "Autre"];
+const coordonnees = [
+  ["Admissions", '<a href="mailto:admissions@mirelac.mag">admissions@mirelac.mag</a>'],
+  ["Partenariats", '<a href="mailto:partenariats@mirelac.mag">partenariats@mirelac.mag</a>'],
+  ["Vie étudiante et logement", '<a href="mailto:vie-etudiante@mirelac.mag">vie-etudiante@mirelac.mag</a>'],
+  ["Adresse postale (côté Moldus)", "Château de Comper, 56430 Concoret, Bretagne"],
+  ["Courrier par chouette", "Palais de cristal, sous l’étang de Comper"],
+  ["Horaires de l’accueil", "Du lundi au vendredi, de 9 h à 17 h"],
+];
+---
+<Base titre="Contact" description="Écrivez à l’Université de Mirelac : admissions, logement, partenariats. Infos pratiques et accès.">
+  <PageTete surtitre="Contact" titre="Nous écrire" accroche="Une question sur les admissions, le logement ou un partenariat ? Écrivez-nous par le formulaire ci-dessous, ou confiez votre message à une chouette." />
+
+  <section class="section">
+    <div class="conteneur grid items-start gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+      <div class="reveal">
+        <p>Nous répondons sous cinq jours ouvrés, plus vite si la chouette ne s’est pas arrêtée en route.</p>
+        <form class="formulaire" id="form-contact" novalidate>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div class="champ">
+              <label for="nom">Votre nom et prénom *</label>
+              <input id="nom" name="nom" type="text" placeholder="Ex. : Maëlle Corlay" autocomplete="name" required />
+            </div>
+            <div class="champ">
+              <label for="email">Votre adresse e-mail *</label>
+              <input id="email" name="email" type="email" placeholder="Ex. : maelle@exemple.fr" autocomplete="email" required />
+            </div>
+          </div>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div class="champ">
+              <label for="profil">Vous êtes… *</label>
+              <select id="profil" name="profil" required>
+                <option value="">Choisir</option>
+                {profils.map((p) => <option>{p}</option>)}
+              </select>
+            </div>
+            <div class="champ">
+              <label for="objet">Objet de votre message *</label>
+              <select id="objet" name="objet" required>
+                <option value="">Choisir</option>
+                {objets.map((o) => <option>{o}</option>)}
+              </select>
+            </div>
+          </div>
+          <div class="champ">
+            <label for="message">Votre message *</label>
+            <textarea id="message" name="message" placeholder="Écrivez votre message ici…" required></textarea>
+          </div>
+          <label class="consentement">
+            <input type="checkbox" name="consentement" required />
+            <span>J’accepte que mes données soient utilisées pour répondre à ma demande. *</span>
+          </label>
+          <p class="formulaire__aide">Les champs marqués d’un astérisque (*) sont obligatoires.</p>
+          <div class="form-message" id="form-message" role="status" aria-live="polite" tabindex="-1"></div>
+          <div><button class="btn" type="submit">Envoyer mon message</button></div>
+        </form>
+      </div>
+
+      <aside class="carte reveal border-lagon bg-lagon text-cristal">
+        <h3 class="text-cristal">Coordonnées</h3>
+        <dl class="coordonnees [&_a]:text-cristal">
+          {coordonnees.map(([t, d]) => <><dt>{t}</dt><dd set:html={d} /></>)}
+        </dl>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--creme">
+    <div class="conteneur">
+      <SectionTete surtitre="Avant de venir" titre="Infos pratiques" />
+      <Tableau class="reveal" lignes={[
+        ["Adresse (côté Moldus)", "Château de Comper, 56430 Concoret, Bretagne"],
+        ["Adresse (côté sorciers)", "Palais de cristal, sous l’étang de Comper"],
+        ["Accès", "Train jusqu’à Rennes, puis navette enchantée jusqu’à la lisière de Brocéliande"],
+        ["Rentrée", "1<sup>er</sup> septembre, à l’aube (le reflet est plus net)"],
+        ["Frais de scolarité", "450 gallions par an, bourses possibles"],
+        ["Logement", "Dortoirs au palais de cristal, chambres doubles avec vue sur le fond de l’étang"],
+        ["Contact", '<a href="mailto:admissions@mirelac.mag">admissions@mirelac.mag</a>'],
+      ]} />
+    </div>
+  </section>
+</Base>

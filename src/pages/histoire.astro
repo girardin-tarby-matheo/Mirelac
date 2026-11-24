@@ -1,0 +1,101 @@
+---
+import Base from "../layouts/Base.astro";
+import PageTete from "../components/PageTete.astro";
+import SectionTete from "../components/SectionTete.astro";
+import Ornement from "../components/Ornement.astro";
+import Frise from "../components/Frise.astro";
+import { lien } from "../lib/url";
+
+const chapitres = [
+  { num: "I.", titre: "La Dame du Lac", textes: ["Le <em>Lancelot en prose</em>, au XIII<sup>e</sup> siècle, raconte que Viviane vivait dans un domaine caché sous un lac. Ce lac n’était qu’une illusion, un enchantement appris de Merlin pour dissimuler son château aux regards. C’est là qu’elle éleva le jeune Lancelot, qu’on appela dès lors « Lancelot du Lac »."] },
+  { num: "II.", titre: "Le palais de cristal", textes: ["La tradition de Comper ajoute que Merlin, épris de Viviane, lui bâtit un palais de cristal au fond de l’étang. Les Moldus y voient un conte. Nous y voyons notre bâtiment principal."] },
+  { num: "III.", titre: "L’École du Lac", textes: ["Viviane fut la première enseignante du lac : elle forma Lancelot aux armes, à la courtoisie et aux enchantements. Après elle, les Gardiennes du Lac continuèrent d’accueillir de jeunes sorciers bretons, en secret, de génération en génération. Jamais plus de cinq ou six à la fois, choisis un par un et élevés comme Lancelot l’avait été : un maître pour chaque élève, et le lac pour seule école."] },
+  { num: "IV.", titre: "De l’École du Lac à l’université", textes: [
+    "Pendant quinze siècles, l’École du Lac est restée un secret, connu de quelques familles bretonnes. En 2025, le ministère de la Magie a demandé aux Gardiennes d’ouvrir le lac : la France magique manque de sorciers formés, et une école de six élèves ne peut plus suffire.",
+    "Les Gardiennes ont accepté à une condition : que l’enseignement garde l’esprit du lac. Les voies de Viviane, de Merlin et de Lancelot deviennent trois facultés, le palais de cristal est agrandi, et l’Université de Mirelac accueillera sa première promotion en septembre 2027. Chaque étudiant de première année aura un tuteur attitré, en souvenir du temps où chaque élève avait son maître.",
+  ] },
+];
+
+const chronologie = [
+  { date: "Temps arthuriens", texte: "Merlin enseigne l’enchantement du lac à Viviane ; elle y élève Lancelot, premier élève du lac." },
+  { date: "Du VI<sup>e</sup> au XIII<sup>e</sup> siècle", texte: "Les Gardiennes du Lac prennent la suite et forment de jeunes sorciers bretons, en secret." },
+  { date: "1247", texte: "Les Gardiennes rédigent la règle de l’École du Lac : jamais plus de six élèves à la fois." },
+  { date: "1789", texte: "La Révolution impose la devise « Liberté de plonger » ; l’école admet ses premiers élèves non bretons." },
+  { date: "1866", texte: "Le château de Comper est reconstruit en surface ; il devient la façade officielle pour les Moldus." },
+  { date: "1990", texte: "Ouverture du Centre de l’Imaginaire Arthurien à Comper : la meilleure couverture jamais imaginée." },
+  { date: "2025", texte: "Le ministère de la Magie demande aux Gardiennes d’ouvrir l’école au plus grand nombre." },
+  { date: "2026", texte: "Fondation de l’Université de Mirelac : trois facultés, agrandissement du palais de cristal." },
+  { date: "1<sup>er</sup> mars 2027", titre: "Ouverture des premières candidatures", fort: true },
+  { date: "1<sup>er</sup> septembre 2027", titre: "Première Rentrée des Reflets", texte: "1 200 places, 19 pays attendus.", fort: true },
+];
+
+const lieux = [
+  ["L’étang de Comper", "L’entrée unique. Le reflet ne s’ouvre qu’aux porteurs d’une lettre d’admission."],
+  ["La fontaine de Barenton", "Verser son eau sur le perron fait tomber la pluie. Lieu de travaux pratiques en botanique et en potions."],
+  ["Le Val sans Retour", "Morgane y enfermait les amants infidèles. Zone interdite, sauf cours d’enchantements avancés."],
+  ["Le tombeau de Merlin", "Lieu de recueillement où les diplômés déposent un vœu le jour de leur remise de diplôme."],
+];
+
+const rumeurs = [
+  { texte: "Certains élèves, en se penchant sur l’étang à la fin de leur première année, auraient vu leur reflet prendre une couleur pourpre presque noire. Aucun ne l’a jamais avoué devant un enseignant." },
+  { texte: "Dans le palais de cristal, un couloir finit sur une paroi opaque, la seule que la lumière ne traverse pas. Elle est tiède au toucher.", paroi: true },
+  { texte: "Une nuit par an, à Samain, le banquet se tient aux chandelles. Officiellement, c’est une tradition celte. Officieusement, personne ne veut voir ce que le cristal montrerait." },
+];
+---
+<Base titre="Notre histoire" description="Mirelac est née d’un amour, d’un enchantement et d’un enfant élevé sous les eaux : de la Dame du Lac à l’université.">
+  <PageTete surtitre="L’université" titre="Notre histoire" accroche="Mirelac est née d’un amour, d’un enchantement et d’un enfant élevé sous les eaux." />
+
+  <section class="section">
+    <div class="conteneur grid gap-x-16 gap-y-12 md:grid-cols-2">
+      {chapitres.map((c, i) => (
+        <article class="reveal">
+          <p class="eyebrow">{c.num}</p>
+          <h2>{c.titre}</h2>
+          <Ornement gauche />
+          {c.textes.map((t, j) => <p class:list={{ lettrine: i === 0 && j === 0 }} set:html={t} />)}
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--nuit vague-haut vague-bas">
+    <div class="conteneur etroit">
+      <SectionTete surtitre="Quinze siècles sous l’eau" titre="Chronologie" centre ornement />
+      <Frise etapes={chronologie} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur">
+      <SectionTete surtitre="Brocéliande" titre="Les quatre lieux légendaires du campus" />
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {lieux.map(([titre, texte]) => (
+          <article class="carte reveal"><h3>{titre}</h3><p>{texte}</p></article>
+        ))}
+      </div>
+      <p class="reveal mt-7"><a class="btn btn--contour" href={lien("/campus")}>Explorer le campus →</a></p>
+    </div>
+  </section>
+
+  <section class="section section--morgane vague-haut">
+    <div class="conteneur grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+      <div class="reveal">
+        <p class="eyebrow">Archives incomplètes</p>
+        <h2>La faculté dont on ne parle pas</h2>
+        <p>L’École du Lac enseignait quatre voies. La quatrième portait le nom de Morgane, la fée du Val sans Retour, demi-sœur du roi Arthur et ancienne élève de Merlin.</p>
+        <p>Pendant des siècles, la voie de Morgane enseigna à une poignée d’élèves ce que les autres n’osaient pas approcher. Les archives ne disent pas quoi : les pages ont été arrachées, et la liste de ses élèves n’a jamais été retrouvée.</p>
+        <p>On sait seulement qu’une nuit de Samain, en <span class="date-1588">1588</span>, l’étang de Comper cessa de refléter. Pas un arbre, pas une étoile, pas un visage. Au matin, le reflet était revenu, mais la salle de Morgane avait été scellée de l’intérieur. Personne ne sait qui l’a fermée, ni ce qu’elle renferme encore.</p>
+        <p>Depuis, la voie de Morgane a été rayée de tous les documents officiels. Aujourd’hui, alors que les trois autres voies deviennent des facultés, la quatrième ne rouvrira pas. Son nom n’est pas prononcé en cours, et les professeurs interrogés changent de sujet avec une politesse remarquable.</p>
+      </div>
+      <div>
+        <h3 class="reveal">Ce que racontent les anciens élèves de l’École du Lac</h3>
+        <div class="mb-6 grid gap-5">
+          {rumeurs.map((r) => (
+            <div class:list={["carte carte--sombre reveal", { paroi: r.paroi }]}><p>{r.texte}</p></div>
+          ))}
+        </div>
+        <p class="note reveal"><strong>Note de la direction :</strong> il n’existe que trois facultés à Mirelac. Toute rumeur contraire relève de l’imagination des anciens élèves.</p>
+      </div>
+    </div>
+  </section>
+</Base>

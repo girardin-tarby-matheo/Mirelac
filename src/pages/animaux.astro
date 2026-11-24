@@ -1,0 +1,78 @@
+---
+import Base from "../layouts/Base.astro";
+import PageTete from "../components/PageTete.astro";
+import Ornement from "../components/Ornement.astro";
+import Losanges from "../components/Losanges.astro";
+import Tableau from "../components/Tableau.astro";
+import { lien } from "../lib/url";
+---
+<Base titre="Règlementation des animaux" description="Chouettes, chats, petits dragons et korrigans : la règlementation des animaux à Mirelac.">
+  <PageTete surtitre="Vie étudiante" titre="Règlementation des animaux" accroche="Chaque étudiant peut amener un animal de compagnie, à condition qu’il figure dans la catégorie autorisée et qu’il sache traverser le reflet sans paniquer." />
+
+  <section class="section">
+    <div class="conteneur etroit">
+      <article class="reveal">
+        <p class="eyebrow">Article 1</p>
+        <h2>Animaux autorisés sans déclaration</h2>
+        <Tableau entetes={["Animal", "Remarque"]} lignes={[
+          ["Chouette ou hibou", "Animal postal recommandé ; vol libre autorisé au-dessus de l’étang."],
+          ["Chat", "Doit porter un collier anti-reflet (il tend à rester fasciné par l’eau)."],
+          ["Crapaud ou grenouille", "Interdit de baignade dans l’étang d’entrée."],
+          ["Corbeau", "Bienvenu, mais les réponses aux examens qu’il souffle ne sont pas recevables."],
+        ]} />
+      </article>
+      <Ornement />
+
+      <article class="reveal">
+        <p class="eyebrow">Article 2</p>
+        <h2>Animaux soumis à autorisation</h2>
+        <p>Une demande doit être déposée auprès du professeur de soins aux créatures avant la rentrée.</p>
+        <Tableau entetes={["Animal", "Condition"]} lignes={[
+          ["Furet, hérisson, lapin", "Cage ensorcelée obligatoire dans les dortoirs."],
+          ["Serpent non venimeux", "Terrarium chauffé, interdit en salle de cours."],
+          ["Petit dragon de compagnie (moins de 30 cm)", "Certificat d’ignifugation de la chambre, et assurance."],
+          ["Lutin domestique", "Contrat de travail signé et rémunération conforme."],
+        ]} />
+      </article>
+      <Ornement />
+
+      <article class="reveal">
+        <p class="eyebrow">Article 3</p>
+        <h2>Animaux et créatures interdits</h2>
+        <Losanges style="--puce: var(--rouge)" items={[
+          "Toute créature classée dangereuse par l’Office breton des Créatures.",
+          "Les loups-garous non déclarés (les étudiants concernés bénéficient d’un aménagement discret les nuits de pleine lune).",
+          "Les animaux déjà métamorphosés : tout animal de compagnie doit être et rester un animal.",
+          "Les créatures aquatiques capables de remonter le reflet.",
+        ]} />
+      </article>
+      <Ornement />
+
+      <article class="reveal">
+        <p class="eyebrow">Article 4</p>
+        <h2>Créatures de la forêt de Brocéliande</h2>
+        <p>La forêt abrite des créatures sauvages protégées : korrigans, cerfs blancs, fées des sources. Il est interdit de les capturer, de les nourrir ou de les adopter.</p>
+        <p class="note">Les korrigans, en particulier, ne doivent jamais être invités à danser.</p>
+      </article>
+      <Ornement />
+
+      <div class="grid gap-6 md:grid-cols-2">
+        <article class="carte reveal">
+          <p class="eyebrow">Article 5</p>
+          <h3>Responsabilité</h3>
+          <p>Le propriétaire répond des dégâts causés par son animal. Une vitre du palais de cristal brisée est facturée 40 gallions. Un animal perdu dans le Val sans Retour n’est pas recherché : le Val ne rend rien.</p>
+        </article>
+        <article class="carte reveal">
+          <p class="eyebrow">Article 6</p>
+          <h3>Sanctions</h3>
+          <p>Un premier manquement entraîne un avertissement. En cas de récidive, l’animal est confié à l’Office breton des Créatures jusqu’à la fin du semestre.</p>
+        </article>
+      </div>
+
+      <div class="reveal mt-10 flex flex-wrap gap-3.5">
+        <a class="btn btn--bleu" href={lien("/candidater")}>Déclarer mon animal en candidatant</a>
+        <a class="btn btn--contour" href={lien("/logement")}>Le logement</a>
+      </div>
+    </div>
+  </section>
+</Base>

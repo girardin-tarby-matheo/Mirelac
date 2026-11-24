@@ -1,0 +1,55 @@
+---
+import Base from "../layouts/Base.astro";
+import PageTete from "../components/PageTete.astro";
+import SectionTete from "../components/SectionTete.astro";
+
+type Prof = { initiales: string; fac: string; role: string; nom: string; matiere: string; portrait: string };
+
+const doyens: Prof[] = [
+  { initiales: "XS", fac: "viviane", role: "Doyen · Faculté de Viviane", nom: "Professeur Xavier Sénenchant", matiere: "Enchantements et illusions", portrait: "Ses cours commencent souvent sans qu’on le voie entrer, et finissent parfois sans qu’il soit vraiment là." },
+  { initiales: "SA", fac: "merlin", role: "Doyen · Faculté de Merlin", nom: "Professeur Sébastien Augure", matiere: "Prophétie et lecture des signes", portrait: "Il répond aux questions avant qu’on les pose, ce qui agace prodigieusement ses collègues." },
+  { initiales: "MN", fac: "lancelot", role: "Doyenne · Faculté de Lancelot", nom: "Professeure Myriam Nicolagan", matiere: "Défense contre le mal", portrait: "Elle exige qu’on la salue avant chaque duel, et qu’on la remercie après chaque défaite." },
+];
+const professeurs: Prof[] = [
+  { initiales: "MP", fac: "merlin", role: "Faculté de Merlin", nom: "Professeur Menhir Prachtenn", matiere: "Histoire de la magie bretonne et runes", portrait: "Solide comme la pierre dont il porte le nom, il raconte les légendes comme s’il y avait assisté." },
+  { initiales: "DM", fac: "lancelot", role: "Faculté de Lancelot", nom: "Professeur David Malsort", matiere: "Sortilèges et contre-sorts", portrait: "Il a passé sa jeunesse à rater ses sorts ; il enseigne désormais comment les défaire." },
+  { initiales: "LB", fac: "prisme", role: "Année du Prisme", nom: "Professeure Lydia des Bois-Dormants", matiere: "Botanique, potions et soins aux créatures", portrait: "Elle connaît chaque champignon de Brocéliande, dont trois qu’elle refuse de nommer." },
+  { initiales: "AM", fac: "viviane", role: "Faculté de Viviane", nom: "Professeur Abdallah Makhoule", matiere: "Magie des miroirs et des surfaces", portrait: "D’un simple regard, il fait onduler l’étang : ses étudiants l’appellent le maître de la houle." },
+];
+---
+<Base titre="Professeurs" description="Le corps enseignant de Mirelac : la présidence, les doyens des trois facultés et les professeurs.">
+  <PageTete surtitre="Corps enseignant" titre="Professeurs" accroche="Réunis sous la présidence de Pascal du Château : un doyen par faculté, et quatre professeurs pour compléter l’équipe." />
+
+  <section class="section">
+    <div class="conteneur etroit">
+      <article class="carte prof reveal">
+        <div class="prof__initiales" style="--fac: var(--bleu-nuit)">PC</div>
+        <p class="prof__role">Président de l’université</p>
+        <h2>Pascal du Château</h2>
+        <p class="prof__portrait">Sa famille gère le château de Comper depuis sa construction : il en connaît chaque pierre, en surface comme sous l’eau.</p>
+      </article>
+    </div>
+  </section>
+
+  {[
+    { surtitre: "Doyens des facultés", titre: "Les trois doyens", liste: doyens, creme: true, colonnes: "md:grid-cols-3" },
+    { surtitre: "L’équipe", titre: "Professeurs", liste: professeurs, creme: false, colonnes: "sm:grid-cols-2 lg:grid-cols-4" },
+  ].map((groupe) => (
+    <section class:list={["section", { "section--creme": groupe.creme }]}>
+      <div class="conteneur">
+        <SectionTete surtitre={groupe.surtitre} titre={groupe.titre} centre ornement />
+        <div class={`grid gap-6 ${groupe.colonnes}`}>
+          {groupe.liste.map((p) => (
+            <article class={`carte prof fac-${p.fac} reveal`}>
+              <div class:list={["prof__initiales", { onde: p.initiales === "AM" }]}>{p.initiales}</div>
+              <p class="prof__role">{p.role}</p>
+              <h3>{p.nom}</h3>
+              <p class="prof__matiere">{p.matiere}</p>
+              <p class="prof__portrait">{p.portrait}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+</Base>

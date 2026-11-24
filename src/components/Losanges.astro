@@ -1,0 +1,7 @@
+---
+interface Props { items: string[]; class?: string; style?: string }
+const { items, class: classe, style } = Astro.props;
+---
+<ul class:list={["losanges", classe]} style={style}>
+  {items.map((i) => <li set:html={i} />)}
+</ul>

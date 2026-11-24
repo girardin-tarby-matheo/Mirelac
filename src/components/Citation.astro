@@ -1,0 +1,8 @@
+---
+interface Props { auteur: string }
+const { auteur } = Astro.props;
+---
+<blockquote class="citation reveal">
+  <p><slot /></p>
+  <footer>{auteur}</footer>
+</blockquote>

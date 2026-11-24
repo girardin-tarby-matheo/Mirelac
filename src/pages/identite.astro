@@ -1,0 +1,126 @@
+---
+import Base from "../layouts/Base.astro";
+import PageTete from "../components/PageTete.astro";
+import SectionTete from "../components/SectionTete.astro";
+import Ornement from "../components/Ornement.astro";
+import Blason from "../components/Blason.astro";
+import Tableau from "../components/Tableau.astro";
+import Losanges from "../components/Losanges.astro";
+import { lien } from "../lib/url";
+
+const couleurs = [
+  { role: "Principale", nom: "Bleu lagon", hex: "#253F66", rvb: "R 37 · V 63 · B 102", cmjn: "C 64 · M 38 · J 0 · N 60" },
+  { role: "Secondaire", nom: "Rouge amanite", hex: "#E54D1F", rvb: "R 229 · V 77 · B 31", cmjn: "C 0 · M 66 · J 86 · N 10" },
+  { role: "Accent", nom: "Or soleil", hex: "#D6C16F", rvb: "R 214 · V 193 · B 111", cmjn: "C 0 · M 10 · J 48 · N 16" },
+  { role: "Accent précieux", nom: "Blanc cristal", hex: "#F9EFE1", rvb: "R 249 · V 239 · B 225", cmjn: "C 0 · M 4 · J 10 · N 2", clair: true },
+];
+
+const specimens = [
+  { exemple: "Titres (H1)", classe: "font-titre text-5xl leading-none text-lagon", police: "Jana Thork — 48 px, regular", usage: "Calligraphique, au côté celtique et médiéval : elle colle à Brocéliande. Logo et h1." },
+  { exemple: "H2", classe: "font-sous text-[2rem] text-lagon", police: "Marcellus — 32 px, regular", usage: "Capitale romaine gravée, avec une touche Art nouveau." },
+  { exemple: "H3", classe: "font-sous text-[1.625rem] text-lagon", police: "Marcellus — 26 px, regular", usage: "Intertitres." },
+  { exemple: "H4", classe: "font-sous text-xl font-bold uppercase text-lagon", police: "Marcellus — 20 px, bold, uppercase", usage: "Petits titres." },
+  { exemple: "Corps de texte", classe: "", police: "Alegreya — 16 px, regular", usage: "D’origine calligraphique et très lisible à l’écran, elle rappelle la plume onciale de Jana Thork." },
+  { exemple: "Exergues, citations", classe: "italic", police: "Alegreya — 16 px, italique", usage: "Pour les citations et les mots de la direction." },
+  { exemple: "Faculté de Viviane", classe: "font-sc text-xl", police: "Alegreya SC — petites capitales", usage: "Noms de facultés et étiquettes." },
+];
+---
+<Base titre="Identité et blason" description="Nom, devise, blason, couleurs et typographies de l’Université de Magie de Mirelac.">
+  <PageTete surtitre="L’université" titre="Identité et blason" accroche="Un seul motif : la surface de l’eau, à la fois miroir et porte, dans un style Art nouveau." />
+
+  <!-- Nom et signature -->
+  <section class="section">
+    <div class="conteneur grid items-start gap-10 md:grid-cols-2 md:gap-16">
+      <div class="reveal">
+        <p class="eyebrow">Nom et signature</p>
+        <h2>Mirelac</h2>
+        <p class="lead">De « se mirer » et « lac ».</p>
+        <dl class="grid gap-1">
+          <dt class="mt-3 font-sc tracking-wider text-soleil-fonce">Nom complet</dt>
+          <dd>Université de Magie de Mirelac — Brocéliande</dd>
+          <dt class="mt-3 font-sc tracking-wider text-soleil-fonce">Slogan</dt>
+          <dd>Traversez le reflet.</dd>
+        </dl>
+      </div>
+      <div class="carte reveal text-center">
+        <p class="eyebrow">Devise</p>
+        <p class="devise">Qui se mire, s’ouvre.</p>
+        <p class="exergue">Version latine pour le blason : <em>Speculum et porta</em>, « miroir et porte ».</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blason -->
+  <section class="section section--creme">
+    <div class="conteneur grid items-center gap-12 md:grid-cols-2 md:gap-16">
+      <figure class="reveal m-0">
+        <Blason />
+        <figcaption class="exergue mt-3.5 text-center">Speculum et porta</figcaption>
+      </figure>
+      <div class="reveal">
+        <p class="eyebrow">Le blason</p>
+        <h2>Miroir et porte</h2>
+        <Ornement gauche />
+        <p>Un écu partagé horizontalement par une ligne ondulée : la surface du lac. En haut, le château de Comper en silhouette, sobre. En bas, son reflet inversé, devenu un palais de cristal aux tours effilées.</p>
+        <p>Au centre de la ligne d’eau, une épée posée à l’horizontale rappelle Lancelot. Trois médaillons, à gauche, à droite et en pointe, portent les symboles des facultés. Un quatrième médaillon, en haut de l’écu, a été martelé jusqu’à la pierre nue.</p>
+        <Tableau entetes={["Faculté", "Symbole"]} lignes={[["Viviane", "Un miroir à main"], ["Merlin", "Une étoile à sept branches"], ["Lancelot", "Un écu barré d’une épée"]]} />
+        <div class="flex items-center gap-4.5">
+          <img src={lien("/monogramme.svg")} alt="" width="72" height="72" />
+          <p class="m-0"><strong>Logo simplifié</strong> (favicon, réseaux) : un « M » dont la moitié basse est le reflet inversé de la moitié haute, séparées par une ligne ondulée.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Couleurs -->
+  <section class="section">
+    <div class="conteneur">
+      <SectionTete surtitre="Palette" titre="Couleurs" />
+      <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {couleurs.map((c) => (
+          <div class="reveal">
+            <div class:list={["nuance__losange", { "nuance__losange--clair": c.clair }]} style={`--c:${c.hex}`} />
+            <p class="nuance__role m-0">{c.role}</p>
+            <p class="m-0 font-sous text-xl text-lagon">{c.nom}</p>
+            <p class="m-0 text-encre-douce tabular-nums">{c.hex}<br />{c.rvb}<br />{c.cmjn}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Typographies -->
+  <section class="section section--creme">
+    <div class="conteneur">
+      <SectionTete surtitre="Typographies" titre="Pierre gravée et plume onciale" />
+      <div class="specimen reveal">
+        {specimens.map((s) => (
+          <div class="specimen__ligne">
+            <p class={s.classe}>{s.exemple}</p>
+            <p class="specimen__info"><strong>{s.police}</strong>{s.usage}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Motifs et ton -->
+  <section class="section">
+    <div class="conteneur grid gap-6 md:grid-cols-2">
+      <div class="carte reveal">
+        <h3>Motifs et effets</h3>
+        <Losanges items={[
+          "Effet d’ondulation de l’eau au survol des boutons et des images. Survolez le blason pour le voir.",
+          "Transitions de page « à ressort » : l’écran plonge, des cercles d’eau partent du clic et la nouvelle page remonte à la surface.",
+          "Textures : brume, feuillages de chêne, cristal facetté.",
+          "Un style Art nouveau : arches, lignes en coup de fouet, losanges.",
+        ]} />
+      </div>
+      <div class="carte reveal">
+        <h3>Ton rédactionnel</h3>
+        <p>Solennel mais complice. Le site parle comme une institution séculaire qui a gardé son humour, en vouvoyant le lecteur.</p>
+        <p class="exergue">Une touche d’ironie bienvenue dans les actualités et le règlement, jamais dans l’histoire.</p>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,49 @@
+---
+import { lien } from "../lib/url";
+const annee = Math.max(new Date().getFullYear(), 2027);
+---
+<footer class="pied">
+  <div class="conteneur">
+    <div class="pied__grille">
+      <div>
+        <a class="logo" href={lien("/")}><svg aria-hidden="true"><use href="#sym-monogramme" /></svg><span>Mirelac</span></a>
+        <p class="pied__devise">Qui se mire, s’ouvre.</p>
+        <p class="pied__slogan">Traversez le reflet.</p>
+        <p>Université de Magie de Mirelac — Brocéliande</p>
+      </div>
+      <div>
+        <h3>L’université</h3>
+        <ul>
+          <li><a href={lien("/histoire")}>Notre histoire</a></li>
+          <li><a href={lien("/campus")}>Le campus</a></li>
+          <li><a href={lien("/identite")}>Identité et blason</a></li>
+          <li><a href={lien("/professeurs")}>Professeurs</a></li>
+          <li><a href={lien("/partenaires")}>Partenaires</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Étudier</h3>
+        <ul>
+          <li><a href={lien("/formations")}>Formations</a></li>
+          <li><a href={lien("/diplomes")}>Diplômes</a></li>
+          <li><a href={lien("/vie-etudiante")}>Vie étudiante</a></li>
+          <li><a href={lien("/logement")}>Logement</a></li>
+          <li><a href={lien("/animaux")}>Animaux</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Nous trouver</h3>
+        <ul>
+          <li>Château de Comper, 56430 Concoret, Bretagne</li>
+          <li>Palais de cristal, sous l’étang de Comper</li>
+          <li><a href="mailto:admissions@mirelac.mag">admissions@mirelac.mag</a></li>
+          <li><a href={lien("/candidater")}>Candidater</a> · <a href={lien("/contact")}>Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pied__bas">
+      <p>Site fictif réalisé dans un cadre pédagogique. Mirelac est une création originale inspirée des légendes arthuriennes de Brocéliande ; elle n’est affiliée à aucune œuvre ni marque existante. Le château de Comper et le Centre de l’Imaginaire Arthurien existent réellement.</p>
+      <p>© {annee} Université de Magie de Mirelac — Brocéliande</p>
+    </div>
+  </div>
+</footer>

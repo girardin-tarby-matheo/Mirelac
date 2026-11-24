@@ -1,0 +1,16 @@
+---
+export interface Etape { date: string; titre?: string; texte?: string; fort?: boolean }
+interface Props { etapes: Etape[] }
+const { etapes } = Astro.props;
+---
+<ol class="frise reveal">
+  {etapes.map((e) => (
+    <li class:list={{ "frise--fort": e.fort }}>
+      <span class="frise__date" set:html={e.date} />
+      <p class="frise__texte">
+        {e.titre && <strong>{e.titre}</strong>}
+        {e.texte && <Fragment set:html={e.texte} />}
+      </p>
+    </li>
+  ))}
+</ol>

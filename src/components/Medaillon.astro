@@ -1,0 +1,13 @@
+---
+import type { Symbole } from "../data/facultes";
+
+interface Props {
+  symbole: Symbole;
+  grand?: boolean;
+  class?: string;
+}
+const { symbole, grand, class: classe } = Astro.props;
+---
+<div class:list={["medaillon onde", { "medaillon--grand": grand }, classe]}>
+  <svg aria-hidden="true"><use href={`#sym-${symbole}`} /></svg>
+</div>

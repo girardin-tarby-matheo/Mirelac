@@ -1,0 +1,20 @@
+---
+import Medaillon from "./Medaillon.astro";
+import type { Symbole } from "../data/facultes";
+
+interface Props {
+  surtitre: string;
+  titre: string;
+  accroche?: string;
+  symbole?: Symbole;
+}
+const { surtitre, titre, accroche, symbole } = Astro.props;
+---
+<header class:list={["page-tete vague-bas", { "page-tete--fac": symbole }]}>
+  <div class="conteneur">
+    {symbole && <div class="page-tete__symbole"><Medaillon symbole={symbole} grand /></div>}
+    <p class="eyebrow">{surtitre}</p>
+    <h1>{titre}</h1>
+    {accroche && <p class="page-tete__accroche" set:html={accroche} />}
+  </div>
+</header>

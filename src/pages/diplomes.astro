@@ -1,0 +1,76 @@
+---
+import Base from "../layouts/Base.astro";
+import PageTete from "../components/PageTete.astro";
+import SectionTete from "../components/SectionTete.astro";
+import Ornement from "../components/Ornement.astro";
+import Losanges from "../components/Losanges.astro";
+import { lien } from "../lib/url";
+
+const grades = [
+  { niveau: "Bac +3 · 3 ans", nom: "Licence d’Enchanteur", sigle: "L.E.", note: "Dont l’Année du Prisme.", epreuve: "l’Épreuve du Miroir, lancer un sortilège de dissimulation devant jury." },
+  { niveau: "Bac +5 · 2 ans", nom: "Master de Maîtrise Arthurienne", sigle: "M.M.A.", epreuve: "mémoire et démonstration pratique dans sa spécialité." },
+  { niveau: "Bac +8 · 3 ans minimum", nom: "Doctorat du Lac", sigle: "", epreuve: "thèse soutenue au tombeau de Merlin, devant un jury de cinq maîtres." },
+];
+const mentions = [
+  ["Cristal", "16 et plus"], ["Argent", "14 à 15,99"], ["Reflet", "12 à 13,99"], ["Onde", "10 à 11,99"], ["Trouble", "Moins de 10 · non validé"],
+];
+---
+<Base titre="Diplômes et évaluation" description="Licence d’Enchanteur, Master de Maîtrise Arthurienne, Doctorat du Lac : les diplômes de Mirelac et leur évaluation.">
+  <PageTete surtitre="Formations" titre="Diplômes et évaluation" accroche="Trois grades, calqués sur le schéma licence-master-doctorat et reconnus par le ministère de la Magie français." />
+
+  <section class="section">
+    <div class="conteneur grid gap-6 md:grid-cols-3">
+      {grades.map((g) => (
+        <article class="carte carte--arche reveal">
+          <p class="eyebrow">{g.niveau}</p>
+          <h3>{g.nom}</h3>
+          <p class="faculte min-h-[1.65em]">{g.sigle}</p>
+          <Ornement />
+          {g.note && <p>{g.note}</p>}
+          <p><strong>Épreuve finale :</strong> {g.epreuve}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section section--creme">
+    <div class="conteneur grid items-start gap-12 md:grid-cols-2 md:gap-16">
+      <div class="reveal">
+        <p class="eyebrow">Admission</p>
+        <h2>Prérequis</h2>
+        <Losanges items={[
+          "Avoir 17 ans révolus au 1<sup>er</sup> septembre.",
+          "Avoir reçu une lettre d’admission (c’est elle qui ouvre le reflet de l’étang).",
+          "Avoir validé un cursus magique secondaire (Beauxbâtons, Poudlard…), ou suivi la Prépa Reflet.",
+        ]} />
+        <a class="btn btn--bleu" href={lien("/candidater")}>Candidater</a>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">Ouverture</p>
+        <h2>Équivalences</h2>
+        <p>Les diplômes de Mirelac sont reconnus par les écoles partenaires européennes. Un semestre d’échange est possible dès la 2<sup>e</sup> année.</p>
+        <a class="carte__lien" href={lien("/partenaires")}>Voir les écoles partenaires →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur">
+      <SectionTete surtitre="Évaluation" titre="Les mentions de Mirelac">
+        <p>Chaque semestre donne lieu à des épreuves écrites et pratiques, notées sur 20. Les mentions suivent une échelle propre à Mirelac.</p>
+      </SectionTete>
+      <div class="mentions reveal">
+        {mentions.map(([nom, note]) => <div class="mention"><strong>{nom}</strong><span>{note}</span></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--nuit vague-haut">
+    <div class="conteneur etroit reveal text-center">
+      <p class="eyebrow">Chaque solstice d’été</p>
+      <h2>Remise des diplômes</h2>
+      <Ornement />
+      <p class="lead">Les diplômés ressortent de l’étang par le chemin inverse, puis déposent un vœu au tombeau de Merlin. Ils reçoivent un diplôme gravé sur une fine plaque de cristal du lac.</p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,17 @@
+---
+import Ornement from "./Ornement.astro";
+
+interface Props {
+  surtitre?: string;
+  titre: string;
+  centre?: boolean;
+  ornement?: boolean;
+}
+const { surtitre, titre, centre, ornement } = Astro.props;
+---
+<div class:list={["section__tete reveal", { "section__tete--centre": centre }]}>
+  {surtitre && <p class="eyebrow" set:html={surtitre} />}
+  <h2>{titre}</h2>
+  {ornement && <Ornement gauche={!centre} />}
+  <slot />
+</div>

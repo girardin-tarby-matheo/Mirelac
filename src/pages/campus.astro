@@ -1,0 +1,67 @@
+---
+import Base from "../layouts/Base.astro";
+import PageTete from "../components/PageTete.astro";
+import SectionTete from "../components/SectionTete.astro";
+import Ornement from "../components/Ornement.astro";
+import { lien } from "../lib/url";
+
+const palais = [
+  { etiquette: "Cœur du palais", titre: "Le Grand Atrium", texte: "C’est là qu’on atterrit après le saut dans l’étang. Sa voûte de cristal laisse voir la surface de l’eau, à dix mètres au-dessus, et la lumière y danse toute la journée. Il accueille les cérémonies et les grandes annonces." },
+  { etiquette: "Repas", titre: "Le réfectoire", texte: "Une longue salle aux tables de chêne, dont les murs donnent sur le fond du lac. Trois repas par jour, et des banquets les soirs de fête. Le cidre de la Cidrerie du Val y coule à volonté (sans alcool pour les mineurs, sur l’honneur)." },
+  { etiquette: "Aile de Merlin", titre: "La grande bibliothèque", texte: "Au cœur de l’aile de Merlin, 40 000 ouvrages sur sept niveaux en spirale. Ouverte jour et nuit. Les grimoires les plus anciens sont enchaînés : certains ont déjà tenté de s’enfuir." },
+  { etiquette: "Aile de Lancelot", titre: "L’arène de duel", texte: "Une salle ronde aux parois renforcées, reliée à l’aile de Lancelot. Les sorts perdus y sont absorbés par le cristal. Elle accueille les cours de duel et les tournois." },
+  { etiquette: "Faculté de Viviane", titre: "La salle des Miroirs", texte: "Le laboratoire de la faculté de Viviane : des centaines de miroirs, dont un seul montre le vrai reflet de celui qui s’y regarde." },
+  { etiquette: "Au-dessus de l’eau", titre: "L’observatoire", texte: "Une tour de cristal qui perce la surface de l’étang, invisible des Moldus. On y étudie les étoiles et les signes." },
+];
+
+const broceliande = [
+  { titre: "L’étang de Comper", texte: "L’entrée unique de Mirelac. Pour les Moldus, c’est un étang paisible au pied d’un château. Pour les porteurs d’une lettre d’admission, c’est un miroir qui s’ouvre : on saute dans son reflet, on traverse, et l’on ressort sec dans le Grand Atrium. La légende y fait naître Viviane." },
+  { titre: "La fontaine de Barenton", texte: "Selon la légende, verser son eau sur la pierre voisine fait tomber la pluie. Les étudiants y viennent pour les travaux pratiques de botanique et de potions, sous la conduite de la professeure des Bois-Dormants. Les essais de pluie sont réglementés, par égard pour les randonneurs." },
+  { titre: "Le Val sans Retour", texte: "Morgane y enfermait les amants infidèles, et son sortilège n’a jamais été levé. L’accès est interdit aux étudiants, sauf pour le cours d’enchantements avancés, toujours encadré.", conseil: "Conseil de la direction : n’y entrez pas avec une promesse non tenue." },
+  { titre: "Le tombeau de Merlin", texte: "Deux pierres sous les arbres, où l’enchanteur reposerait. Lieu de recueillement, il accueille chaque solstice d’été la fin de la remise des diplômes : chaque diplômé y dépose un vœu, écrit sur une feuille de chêne." },
+];
+---
+<Base titre="Le campus" description="Un palais sous l’eau, une forêt pour salle de classe : le palais de cristal et les lieux légendaires de Brocéliande.">
+  <PageTete surtitre="Le campus" titre="Un palais sous l’eau, une forêt pour salle de classe." />
+
+  <section class="section">
+    <div class="conteneur etroit reveal text-center">
+      <p class="lead">Le campus de Mirelac s’étend sur deux mondes. Sous l’étang de Comper, le palais de cristal abrite les cours, les dortoirs et la vie quotidienne. Autour, la forêt de Brocéliande offre ses lieux légendaires aux travaux pratiques, aux promenades et aux vœux des diplômés.</p>
+      <Ornement />
+    </div>
+  </section>
+
+  <section class="section section--creme">
+    <div class="conteneur">
+      <SectionTete surtitre="Sous la surface" titre="Le palais de cristal" />
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {palais.map((l) => (
+          <article class="carte reveal">
+            <span class="etiquette">{l.etiquette}</span>
+            <h3>{l.titre}</h3>
+            <p>{l.texte}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bleu vague-haut" style="--vague-c: var(--cristal-2)">
+    <div class="conteneur">
+      <SectionTete surtitre="Hors les murs" titre="Les lieux légendaires de Brocéliande" ornement />
+      <div class="grid gap-6 md:grid-cols-2">
+        {broceliande.map((l) => (
+          <article class="carte carte--sombre reveal">
+            <h3>{l.titre}</h3>
+            <p>{l.texte}</p>
+            {l.conseil && <p class="exergue">{l.conseil}</p>}
+          </article>
+        ))}
+      </div>
+      <div class="reveal mt-9 flex flex-wrap gap-3.5">
+        <a class="btn btn--or" href={lien("/logement")}>Le logement au palais</a>
+        <a class="btn btn--clair" href={lien("/vie-etudiante")}>La vie étudiante</a>
+      </div>
+    </div>
+  </section>
+</Base>

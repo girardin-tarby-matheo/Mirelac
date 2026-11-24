@@ -1,0 +1,86 @@
+---
+import Base from "../layouts/Base.astro";
+import PageTete from "../components/PageTete.astro";
+import SectionTete from "../components/SectionTete.astro";
+import Ornement from "../components/Ornement.astro";
+import Medaillon from "../components/Medaillon.astro";
+import Losanges from "../components/Losanges.astro";
+import { facultes } from "../data/facultes";
+import { lien } from "../lib/url";
+
+const reflets = [
+  { nom: "Bleu lagon", fac: "Viviane", couleur: "text-lagon" },
+  { nom: "Rouge amanite", fac: "Merlin", couleur: "text-amanite" },
+  { nom: "Or soleil", fac: "Lancelot", couleur: "text-soleil-fonce" },
+];
+---
+<Base titre="Formations" description="L’Année du Prisme, les trois facultés de Mirelac et leurs neuf parcours, les formations courtes.">
+  <PageTete surtitre="Formations" titre="Cursus" accroche="Trois facultés, chacune liée à une figure de la légende, et neuf parcours au total. Il y en eut quatre ; on n’en parle pas." />
+
+  <!-- Année du Prisme -->
+  <section class="section" id="prisme">
+    <div class="conteneur grid items-start gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+      <div class="reveal">
+        <p class="eyebrow">Tronc commun · 1<sup>re</sup> année</p>
+        <h2>L’Année du Prisme</h2>
+        <Ornement gauche />
+        <p class="lead">Une année pour découvrir toutes les disciplines avant de choisir sa faculté.</p>
+        <Losanges items={["Sortilèges fondamentaux", "Histoire de la magie bretonne", "Botanique de Brocéliande", "Initiation aux créatures", "Éthique du secret magique"]} />
+        <p>En fin d’année, l’étudiant se penche sur l’étang : la couleur de son reflet indique la faculté qui lui correspond. Il reste libre de son choix.</p>
+      </div>
+      <div class="carte carte--arche fac-prisme reveal">
+        <Medaillon symbole="prisme" grand />
+        <h3>Trois reflets possibles</h3>
+        <div class="grid gap-2.5 text-left">
+          {reflets.map((r) => (
+            <p class="m-0"><span class={`font-sc ${r.couleur}`}>◆ {r.nom}</span> — {r.fac}</p>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Les trois facultés -->
+  <section class="section section--creme">
+    <div class="conteneur">
+      <SectionTete surtitre="À partir de la 2<sup>e</sup> année" titre="Les trois facultés" centre ornement />
+      <div class="grid gap-6 lg:grid-cols-3">
+        {facultes.map((f) => (
+          <a class={`carte carte--arche fac-${f.cle} reveal`} href={lien(`/${f.slug}`)}>
+            <Medaillon symbole={f.symbole} />
+            <p class="etiquette">{f.figure} · reflet {f.reflet}</p>
+            <h3>{f.nom}</h3>
+            <p class="faculte">{f.domaine}</p>
+            <p>{f.resume}</p>
+            <Losanges items={f.parcours} />
+            <p><strong>Débouchés :</strong> {f.debouchesCourts}</p>
+            <span class="carte__lien">Voir la faculté →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Formations courtes -->
+  <section class="section">
+    <div class="conteneur">
+      <SectionTete surtitre="Hors cursus" titre="Formations courtes" />
+      <div class="grid gap-6 md:grid-cols-2">
+        <article class="carte reveal">
+          <span class="etiquette">6 mois</span>
+          <h3>Prépa Reflet</h3>
+          <p>(Re)mise à niveau pour les jeunes sorciers issus de familles moldues, avant d’intégrer l’Année du Prisme.</p>
+        </article>
+        <article class="carte reveal">
+          <span class="etiquette">Stages d’une semaine</span>
+          <h3>Formation continue</h3>
+          <p>Pour sorciers en activité : mise à jour des sortilèges de dissimulation, nouvelles règles sur les créatures.</p>
+        </article>
+      </div>
+      <div class="reveal mt-9 flex flex-wrap gap-3.5">
+        <a class="btn btn--bleu" href={lien("/diplomes")}>Diplômes et évaluation</a>
+        <a class="btn btn--contour" href={lien("/professeurs")}>Rencontrer les professeurs</a>
+      </div>
+    </div>
+  </section>
+</Base>

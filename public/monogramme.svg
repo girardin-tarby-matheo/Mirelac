@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <title>Mirelac</title>
+  <rect width="64" height="64" rx="14" fill="#253F66"/>
+  <path d="M14 30 V12 L32 26 L50 12 V30" fill="none" stroke="#F9EFE1" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+  <path d="M9 32.5 q5.75 -3.5 11.5 0 t11.5 0 t11.5 0 t11.5 0" fill="none" stroke="#D6C16F" stroke-width="2.4" stroke-linecap="round"/>
+  <path d="M14 35 V53 L32 39 L50 53 V35" fill="none" stroke="#F9EFE1" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" opacity=".5"/>
+</svg>

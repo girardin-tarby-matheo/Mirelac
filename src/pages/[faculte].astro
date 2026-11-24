@@ -1,0 +1,73 @@
+---
+import Base from "../layouts/Base.astro";
+import PageTete from "../components/PageTete.astro";
+import SectionTete from "../components/SectionTete.astro";
+import Tableau from "../components/Tableau.astro";
+import Losanges from "../components/Losanges.astro";
+import Citation from "../components/Citation.astro";
+import { facultes, type Faculte } from "../data/facultes";
+import { lien } from "../lib/url";
+
+/* Une page par faculté : /faculte-viviane, /faculte-merlin, /faculte-lancelot */
+export function getStaticPaths() {
+  return facultes.map((f, i) => ({
+    params: { faculte: f.slug },
+    props: { f, precedente: facultes[i - 1], suivante: facultes[i + 1] },
+  }));
+}
+
+interface Props { f: Faculte; precedente?: Faculte; suivante?: Faculte }
+const { f, precedente, suivante } = Astro.props;
+const enListe = (paires: [string, string][]) => paires.map(([t, d]) => `<strong>${t} :</strong> ${d}`);
+---
+<Base titre={f.nom} description={`${f.nom}, ${f.domaine} : ${f.accroche}`} classe={`fac-${f.cle}`}>
+  <PageTete surtitre={`${f.nom} · ${f.domaine}`} titre={f.accroche} symbole={f.symbole} />
+
+  <section class="section">
+    <div class="conteneur grid items-start gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+      <p class="lead lettrine reveal">{f.introduction}</p>
+      <aside class="carte reveal">
+        <p class="eyebrow">{f.doyen.titre}</p>
+        <h3>{f.doyen.nom}</h3>
+        <p class="exergue">{f.doyen.portrait}</p>
+        <p class="m-0"><span class="faculte">Figure tutélaire :</span> {f.figure} · <span class="faculte">Reflet :</span> {f.reflet}</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section section--creme">
+    <div class="conteneur grid gap-6 md:grid-cols-2">
+      <div class="carte reveal">
+        <h3>Qualités recherchées</h3>
+        <Losanges items={enListe(f.qualites)} />
+      </div>
+      <div class="carte reveal">
+        <h3>Domaines d’études</h3>
+        <Losanges items={enListe(f.domaines)} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur">
+      <SectionTete surtitre="Programme" titre="Année par année" />
+      <Tableau class="reveal" entetes={["Année", "Ce que vous apprenez"]} lignes={f.programme} />
+      <p class="reveal"><strong>Débouchés :</strong> {f.debouches}</p>
+    </div>
+  </section>
+
+  <section class="section pt-0">
+    <div class="conteneur etroit">
+      <p class="eyebrow reveal">{f.portrait.titre}</p>
+      <Citation auteur={f.portrait.nom}>{f.portrait.citation}</Citation>
+      <div class="reveal mt-12 flex flex-wrap justify-between gap-4">
+        {precedente
+          ? <a class="btn btn--contour" href={lien(`/${precedente.slug}`)}>← {precedente.nom}</a>
+          : <a class="btn btn--contour" href={lien("/formations")}>← Toutes les formations</a>}
+        {suivante
+          ? <a class="btn btn--bleu" href={lien(`/${suivante.slug}`)}>{suivante.nom} →</a>
+          : <a class="btn btn--bleu" href={lien("/diplomes")}>Diplômes et évaluation →</a>}
+      </div>
+    </div>
+  </section>
+</Base>

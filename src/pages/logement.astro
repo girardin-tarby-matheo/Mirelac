@@ -1,0 +1,89 @@
+---
+import Base from "../layouts/Base.astro";
+import PageTete from "../components/PageTete.astro";
+import SectionTete from "../components/SectionTete.astro";
+import Ornement from "../components/Ornement.astro";
+import Losanges from "../components/Losanges.astro";
+import Tableau from "../components/Tableau.astro";
+import { lien } from "../lib/url";
+
+const ailes = [
+  { fac: "prisme", etiquette: "Année du Prisme", nom: "Aile des Reflets", texte: "La plus proche du Grand Atrium, pour que les nouveaux ne se perdent pas." },
+  { fac: "viviane", etiquette: "Faculté de Viviane", nom: "Aile de Viviane", texte: "Ses couloirs changent parfois d’apparence ; les étudiants s’y retrouvent toujours, les visiteurs rarement." },
+  { fac: "merlin", etiquette: "Faculté de Merlin", nom: "Aile de Merlin", texte: "Construite autour de la grande bibliothèque, ouverte jour et nuit." },
+  { fac: "lancelot", etiquette: "Faculté de Lancelot", nom: "Aile de Lancelot", texte: "Reliée directement à la salle d’armes et à l’arène de duel." },
+];
+---
+<Base titre="Logement au palais de cristal" description="Dormir sous un lac, se réveiller dans la lumière : dortoirs, chambres, règles de vie et couvre-feu au palais de cristal.">
+  <PageTete surtitre="Logement au palais de cristal" titre="Dormir sous un lac, se réveiller dans la lumière." />
+
+  <section class="section">
+    <div class="conteneur etroit reveal text-center">
+      <p class="lead">Tous les étudiants de Mirelac sont logés au palais de cristal, au fond de l’étang de Comper. Ses murs translucides laissent passer la lumière du jour, filtrée par l’eau : le matin, les chambres baignent dans un bleu changeant, et l’on voit passer les poissons au-dessus des lits.</p>
+      <Ornement />
+    </div>
+  </section>
+
+  <section class="section section--creme">
+    <div class="conteneur">
+      <SectionTete surtitre="Les dortoirs" titre="Quatre ailes">
+        <p>Les étudiants de l’Année du Prisme logent ensemble, puis chacun rejoint l’aile de sa faculté.</p>
+      </SectionTete>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {ailes.map((a) => (
+          <article class={`carte fac-${a.fac} reveal border-t-4 border-t-(--fac)`}>
+            <span class="etiquette">{a.etiquette}</span>
+            <h3>{a.nom}</h3>
+            <p>{a.texte}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur grid items-start gap-12 md:grid-cols-2 md:gap-16">
+      <div class="reveal">
+        <p class="eyebrow">Les chambres</p>
+        <h2>Un lit à baldaquin, une baie sur le fond de l’étang</h2>
+        <Losanges items={[
+          "Chambres doubles en 1<sup>re</sup> et 2<sup>e</sup> année, chambres individuelles à partir de la 3<sup>e</sup> année.",
+          "Chaque chambre comprend un lit à baldaquin par occupant, un bureau, une armoire ensorcelée qui range les vêtements toute seule, et une baie vitrée donnant sur le fond de l’étang.",
+          "Les salles d’eau sont communes, une par couloir. L’eau chaude n’y a jamais manqué, ce qui, sous un lac, relève de la prouesse.",
+          "Repas servis trois fois par jour dans le réfectoire du Grand Atrium, compris dans les frais de scolarité.",
+        ]} />
+      </div>
+      <div class="carte reveal">
+        <h3>Règles de vie</h3>
+        <Losanges items={[
+          "Le silence est de rigueur dans les couloirs après le couvre-feu.",
+          "Il est interdit de lancer un sort sur les parois de cristal : une fissure, même minuscule, fait remonter l’étang.",
+          "Les visites dans une autre aile sont autorisées jusqu’au couvre-feu.",
+          `Les animaux suivent le <a href="${lien("/animaux")}">règlement dédié</a>.`,
+          "Toute sortie vers la surface après le couvre-feu doit être autorisée par le président Pascal du Château.",
+          "L’intendance passe chaque lune pour l’entretien des vitres. Les traces de doigts sont à effacer avant son passage.",
+        ]} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--nuit vague-haut">
+    <div class="conteneur">
+      <SectionTete surtitre="Couvre-feu" titre="Quand le cristal s’assombrit" />
+      <div class="grid items-start gap-12 md:grid-cols-2 md:gap-16">
+        <Tableau class="reveal" entetes={["Période", "Retour dans les ailes", "Extinction des lumières"]} lignes={[
+          ["Du dimanche au jeudi", "22 h", "23 h"],
+          ["Vendredi et samedi", "Minuit", "0 h 30"],
+          ["Nuits de pleine lune", "21 h", "22 h"],
+        ]} />
+        <div class="reveal">
+          <p>Au-delà du couvre-feu, les portes des ailes se ferment d’elles-mêmes. Le cristal s’assombrit pour signaler l’heure : bleu clair en journée, bleu nuit au couvre-feu, noir à l’extinction.</p>
+          <div class="cristal-etat text-encre" data-cristal>
+            <div class="cristal-etat__pastille"></div>
+            <p><span class="font-sc text-soleil-fonce">En ce moment, le cristal est</span><br /><span data-cristal-texte>bleu clair.</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,147 @@
+---
+import Base from "../layouts/Base.astro";
+import Medaillon from "../components/Medaillon.astro";
+import Ornement from "../components/Ornement.astro";
+import SectionTete from "../components/SectionTete.astro";
+import { facultes } from "../data/facultes";
+import { lien } from "../lib/url";
+
+const bulles = [
+  [8, 6, 13, 1], [17, 10, 17, 6], [29, 5, 11, 3], [44, 8, 19, 9],
+  [61, 6, 14, 2], [73, 12, 21, 5], [85, 5, 12, 8], [93, 9, 16, 4],
+];
+const chiffres = [
+  { valeur: "1 200", cible: 1200, libelle: "Places à la rentrée 2027" },
+  { valeur: "3", cible: 3, libelle: "Facultés" },
+  { valeur: "62", cible: 62, libelle: "Enseignants et chercheurs" },
+  { valeur: "0", libelle: "Moldu ayant trouvé l’entrée" },
+];
+const actualites = [
+  { etiquette: "Rentrée", titre: "Rentrée des Reflets", texte: "Le premier saut de la toute première promotion aura lieu le 1<sup>er</sup> septembre à l’aube. Prévoyez une tenue que vous acceptez de tremper." },
+  { etiquette: "Travaux pratiques", titre: "Fontaine de Barenton", texte: "Les essais de pluie provoqués par les étudiants de première année sont suspendus jusqu’à nouvel ordre, à la demande des randonneurs." },
+  { etiquette: "Rappel", titre: "Val sans Retour", texte: "L’accès reste interdit aux étudiants de première année. Le sortilège de Morgane n’a jamais été levé." },
+];
+---
+<Base titre="Mirelac" description="Depuis quinze siècles, on apprend la magie en secret sous l’étang de Comper. Dès septembre 2027, Mirelac ouvre ce savoir à toutes les sorcières et tous les sorciers de France.">
+
+  <!-- Héros : la surface de l'étang -->
+  <section class="hero vague-bas">
+    <div class="hero__eau" aria-hidden="true">
+      <svg class="hero__caustiques" preserveAspectRatio="none">
+        <filter id="caustique">
+          <feTurbulence type="fractalNoise" baseFrequency="0.009 0.022" numOctaves="2" seed="7">
+            <animate attributeName="baseFrequency" dur="20s" values="0.009 0.022;0.012 0.03;0.009 0.022" repeatCount="indefinite" />
+          </feTurbulence>
+          <feColorMatrix type="matrix" values="0 0 0 0 .98  0 0 0 0 .94  0 0 0 0 .86  0 0 0 9 -4.6" />
+        </filter>
+        <rect width="100%" height="100%" filter="url(#caustique)" />
+      </svg>
+      <div class="hero__rayons"></div>
+      {bulles.map(([g, t, d, r]) => <span class="bulle" style={`left:${g}%;--t:${t}px;--d:${d}s;--r:${r}s`} />)}
+    </div>
+
+    <div class="conteneur hero__contenu">
+      <p class="eyebrow">Université de Magie · Brocéliande</p>
+      <h1 class="hero__titre">
+        <span class="hero__nom">Mirelac</span>
+        <span class="hero__accroche">l’université sous le lac</span>
+      </h1>
+      <svg class="hero__surface" viewBox="0 0 720 22" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 11 C45 2 75 20 120 11 S195 2 240 11 S315 20 360 11 S435 2 480 11 S555 20 600 11 S675 2 720 11" fill="none" stroke="currentColor" stroke-width="1.4" />
+      </svg>
+      <div class="hero__reflet" aria-hidden="true">Mirelac</div>
+      <p class="hero__sous-titre">Depuis quinze siècles, on apprend la magie en secret sous l’étang de Comper. Dès septembre 2027, Mirelac ouvre ce savoir à toutes les sorcières et tous les sorciers de France, au cœur de la forêt de Brocéliande.</p>
+      <div class="flex flex-wrap justify-center gap-3.5">
+        <a class="btn btn--or" href={lien("/histoire")}>Plonger dans Mirelac →</a>
+        <a class="btn btn--clair" href={lien("/candidater")}>Candidater</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Présentation -->
+  <section class="section">
+    <div class="conteneur grid items-start gap-10 lg:grid-cols-[1.3fr_1fr] lg:gap-16">
+      <div class="reveal">
+        <p class="eyebrow">Traversez le reflet</p>
+        <h2>Un château pour les Moldus, un palais pour les autres</h2>
+        <Ornement gauche />
+        <p class="lead lettrine">À Paimpont, au bord de l’étang de Comper, les Moldus ne voient qu’un château de pierre et un centre culturel. Sous la surface, protégé par l’enchantement que Merlin enseigna à la Dame du Lac, s’élève le palais de cristal de Mirelac.</p>
+        <p>On n’y entre pas par une porte. On saute dans son propre reflet, on traverse le miroir de l’eau, et l’on ressort parfaitement sec dans le Grand Atrium. À partir de septembre 2027, 1 200 étudiants venus de toute l’Europe feront ce saut chaque année.</p>
+        <a class="carte__lien" href={lien("/histoire")}>Lire notre histoire →</a>
+      </div>
+      <aside class="carte reveal text-center">
+        <p class="eyebrow">La devise</p>
+        <p class="devise">Qui se mire, s’ouvre.</p>
+        <p class="exergue">Speculum et porta — miroir et porte.</p>
+        <Ornement />
+        <p>Première Rentrée des Reflets le <strong>1<sup>er</sup> septembre 2027</strong>, à l’aube. Candidatures ouvertes dès le <strong>1<sup>er</sup> mars 2027</strong>.</p>
+        <a class="btn btn--bleu" href={lien("/candidater")}>Préparer ma candidature</a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- Chiffres clés -->
+  <section class="section section--bleu vague-haut vague-bas">
+    <div class="conteneur">
+      <div class="reveal grid grid-cols-2 gap-x-5 gap-y-9 text-center md:grid-cols-4">
+        {chiffres.map((c) => (
+          <div>
+            <span class="chiffre__valeur" data-cible={c.cible}>{c.valeur}</span>
+            <span class="chiffre__libelle">{c.libelle}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Facultés -->
+  <section class="section">
+    <div class="conteneur">
+      <SectionTete surtitre="Trois voies, neuf parcours" titre="Les facultés de Mirelac" centre ornement>
+        <p>Toutes les formations commencent par l’Année du Prisme. En fin d’année, l’étudiant se penche sur l’étang : la couleur de son reflet indique la faculté qui lui correspond.</p>
+      </SectionTete>
+      <div class="grid gap-6 md:grid-cols-3">
+        {facultes.map((f) => (
+          <a class={`carte carte--arche fac-${f.cle} reveal`} href={lien(`/${f.slug}`)}>
+            <Medaillon symbole={f.symbole} />
+            <p class="etiquette">Reflet {f.reflet}</p>
+            <h3>{f.nom}</h3>
+            <p class="faculte">{f.domaine}</p>
+            <p>{f.accroche}</p>
+            <span class="carte__lien">Découvrir →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Actualités -->
+  <section class="section section--creme">
+    <div class="conteneur">
+      <SectionTete surtitre="Actualités" titre="Nouvelles de la surface" />
+      <div class="grid gap-6 md:grid-cols-3">
+        {actualites.map((a) => (
+          <article class="carte reveal">
+            <span class="etiquette">{a.etiquette}</span>
+            <h3>{a.titre}</h3>
+            <p set:html={a.texte} />
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Appel -->
+  <section class="section section--nuit vague-haut appel" style="--vague-c: var(--cristal-2)">
+    <div class="conteneur reveal">
+      <p class="eyebrow">Candidatures dès le 1<sup>er</sup> mars 2027</p>
+      <h2>Votre reflet vous attend.</h2>
+      <p>Une lettre d’admission, un saut dans l’étang, et la forêt de Brocéliande pour salle de classe. Il ne manque que vous.</p>
+      <div class="flex flex-wrap justify-center gap-3.5">
+        <a class="btn btn--or" href={lien("/candidater")}>Candidater</a>
+        <a class="btn btn--clair" href={lien("/campus")}>Visiter le campus</a>
+      </div>
+    </div>
+  </section>
+
+</Base>

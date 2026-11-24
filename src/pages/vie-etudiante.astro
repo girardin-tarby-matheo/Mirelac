@@ -1,0 +1,82 @@
+---
+import Base from "../layouts/Base.astro";
+import PageTete from "../components/PageTete.astro";
+import SectionTete from "../components/SectionTete.astro";
+import Ornement from "../components/Ornement.astro";
+import Frise from "../components/Frise.astro";
+import { lien } from "../lib/url";
+
+const course = [
+  ["Le principe", "Deux équipes de cinq coureurs traversent l’étang en courant sur l’eau, grâce à un sortilège de portance. Ils doivent rapporter dans leur camp une sphère de cristal posée au centre."],
+  ["La difficulté", "Le sortilège cède si le coureur hésite. Un pas mal assuré, et il passe à travers le reflet… pour atterrir, sec mais disqualifié, dans le Grand Atrium."],
+  ["Les équipes", "Une par faculté, plus l’équipe de l’Année du Prisme."],
+  ["Le tournoi", "Six rencontres dans l’année. La finale a lieu la nuit du solstice d’été, et la faculté victorieuse garde la Coupe de Viviane pendant un an."],
+];
+const clubs = [
+  ["Le Cercle des Conteurs", "Veillées de contes et de légendes bretonnes, chaque jeudi au coin du feu de l’Atrium."],
+  ["Les Chouettes de Comper", "Club postal : soins aux chouettes, courses de vitesse entre oiseaux, gestion du courrier de l’université."],
+  ["L’Orchestre du Lac", "Harpes, flûtes et bombardes enchantées ; concert à chaque fête de saison."],
+  ["La Gazette du Reflet", "Le journal étudiant, distribué chaque semaine ; ses pages se mettent à jour toutes seules."],
+  ["Le Club de duel", "Entraînements libres à l’arène, encadrés par le professeur Malsort."],
+];
+const calendrier = [
+  { date: "1<sup>er</sup> septembre, à l’aube", titre: "Rentrée des Reflets", texte: "Premier saut dans l’étang pour les nouveaux, accueillis par leurs aînés dans le Grand Atrium.", fort: true },
+  { date: "31 octobre", titre: "Banquet de Samain", texte: "Le Nouvel An celte. On dit que la nuit, la frontière entre les mondes s’amincit ; le banquet se tient aux chandelles." },
+  { date: "Décembre", titre: "Nuit des Lanternes", texte: "Avant les vacances, les étudiants lâchent des lanternes qui flottent sous la surface de l’étang." },
+  { date: "Février", titre: "Semaine des Facultés", texte: "Chaque faculté ouvre ses salles et montre ses travaux aux autres." },
+  { date: "1<sup>er</sup> mai", titre: "Fête de Beltaine", texte: "Grand feu à la lisière de la forêt, musique de l’Orchestre du Lac." },
+  { date: "Solstice d’été", titre: "Remise des diplômes", texte: "Et finale de la Course des Reflets.", fort: true },
+];
+---
+<Base titre="Vie étudiante" description="La Course des Reflets, les clubs, le calendrier de l’année et l’uniforme : la vie étudiante à Mirelac.">
+  <PageTete surtitre="Vie étudiante" titre="On vient pour étudier, on reste pour tout le reste." />
+
+  <section class="section">
+    <div class="conteneur etroit reveal text-center">
+      <p class="lead">Entre deux cours, Mirelac vit au rythme de ses tournois, de ses clubs et de ses fêtes de saison. Chaque faculté a ses traditions, mais les grands rendez-vous réunissent tout le monde.</p>
+      <Ornement />
+    </div>
+  </section>
+
+  <section class="section section--bleu vague-haut vague-bas">
+    <div class="conteneur">
+      <SectionTete surtitre="Le sport de Mirelac" titre="La Course des Reflets">
+        <p>Le sport emblématique de l’université se joue sur l’étang de Comper, à la nuit tombée, quand les Moldus sont rentrés chez eux.</p>
+      </SectionTete>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {course.map(([t, d]) => <article class="carte carte--sombre reveal"><h3>{t}</h3><p>{d}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur">
+      <SectionTete surtitre="Clubs et associations" titre="Trouver son cercle" />
+      <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {clubs.map(([t, d]) => <article class="carte reveal"><h3>{t}</h3><p>{d}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--creme">
+    <div class="conteneur etroit">
+      <SectionTete surtitre="Au fil des saisons" titre="Calendrier de l’année" centre ornement />
+      <Frise etapes={calendrier} />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur grid items-start gap-12 md:grid-cols-2 md:gap-16">
+      <div class="reveal">
+        <p class="eyebrow">Les Robes Ondines</p>
+        <h2>L’uniforme</h2>
+        <p>Chaque étudiant reçoit en première année une robe des Robes Ondines, imperméable et ignifugée. Elle est bleu lagon, et sa doublure prend la couleur de la faculté après le choix de fin de première année.</p>
+        <p>L’uniforme est obligatoire en cours et lors des cérémonies ; le reste du temps, la tenue est libre.</p>
+      </div>
+      <div class="reveal grid gap-6">
+        <a class="carte" href={lien("/logement")}><span class="etiquette">Logement</span><h3>Dormir sous un lac</h3><p>Ailes, chambres, règles de vie et couvre-feu au palais de cristal.</p><span class="carte__lien">Découvrir →</span></a>
+        <a class="carte" href={lien("/animaux")}><span class="etiquette">Règlement</span><h3>Venir avec son animal</h3><p>Chouettes, chats, petits dragons : ce qui est permis, et ce qui ne l’est pas.</p><span class="carte__lien">Lire le règlement →</span></a>
+      </div>
+    </div>
+  </section>
+</Base>

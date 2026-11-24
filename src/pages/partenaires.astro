@@ -1,0 +1,69 @@
+---
+import Base from "../layouts/Base.astro";
+import PageTete from "../components/PageTete.astro";
+import SectionTete from "../components/SectionTete.astro";
+import Tableau from "../components/Tableau.astro";
+import { lien } from "../lib/url";
+
+const institutions = [
+  ["Ministère de la Magie français", "Reconnaissance des diplômes, stages de la faculté de Lancelot."],
+  ["Office breton des Créatures", "Contrôle des animaux du campus, stages en soins aux créatures."],
+  ["Conservatoire des Lieux Enchantés", "Protection de la fontaine de Barenton, du Val sans Retour et du tombeau de Merlin."],
+  ["Bibliothèque des Grimoires de Carnac", "Prêts d’ouvrages anciens pour la faculté de Merlin."],
+];
+const ecoles = [
+  ["Royaume-Uni · Glastonbury", "Académie d’Avalon", "Magie arthurienne, échange réciproque historique."],
+  ["Italie · Murano", "Scuola degli Specchi", "Magie des miroirs."],
+  ["Allemagne · Forêt-Noire", "Akademie vom Schwarzwald", "Botanique et créatures forestières."],
+  ["Espagne · Saint-Jacques-de-Compostelle", "Colegio de Galícia", "Magie celtique et des chemins."],
+];
+---
+<Base titre="Partenaires" description="Institutions, écoles étrangères et commerces magiques : les douze partenaires de Mirelac.">
+  <PageTete surtitre="L’université" titre="Partenaires" accroche="Douze partenaires répartis en trois cercles : institutions, écoles étrangères et commerces magiques." />
+
+  <section class="section">
+    <div class="conteneur">
+      <SectionTete surtitre="Premier cercle" titre="Institutions" />
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {institutions.map(([t, d]) => <article class="carte reveal"><h3>{t}</h3><p>{d}</p></article>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--creme">
+    <div class="conteneur">
+      <SectionTete surtitre="Deuxième cercle · échanges" titre="Écoles partenaires">
+        <p>Un semestre d’échange est possible dès la 2<sup>e</sup> année.</p>
+      </SectionTete>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {ecoles.map(([lieu, nom, d]) => (
+          <article class="carte carte--arche reveal"><span class="etiquette">{lieu}</span><h3>{nom}</h3><p>{d}</p></article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="conteneur">
+      <SectionTete surtitre="Troisième cercle" titre="Commerces et entreprises magiques" />
+      <Tableau class="reveal" entetes={["Partenaire", "Activité", "Avantage étudiant"]} lignes={[
+        ["La Baguette de Paimpont", "Fabricant de baguettes en bois de Brocéliande (chêne, houx, if)", "-15 % sur la première baguette"],
+        ["Les Robes Ondines", "Tailleur de robes imperméables et ignifuges", "Robe d’uniforme offerte en 1<sup>re</sup> année"],
+        ["Grimoires Le Floc’h", "Librairie de manuels et ouvrages rares", "Carte de fidélité et rachat des manuels"],
+        ["Cidrerie du Val", "Cidre et jus enchantés (sans alcool pour les mineurs, sur l’honneur)", "Fournisseur officiel des banquets"],
+      ]} />
+    </div>
+  </section>
+
+  <section class="section section--nuit vague-haut appel">
+    <div class="conteneur reveal">
+      <p class="eyebrow">Devenir partenaire</p>
+      <h2>Rejoignez le cercle</h2>
+      <p>Vous êtes une institution ou un artisan du monde magique ? Rejoignez le cercle des partenaires de Mirelac et accueillez nos stagiaires.</p>
+      <div class="flex flex-wrap justify-center gap-3.5">
+        <a class="btn btn--or" href="mailto:partenariats@mirelac.mag">partenariats@mirelac.mag</a>
+        <a class="btn btn--clair" href={lien("/contact")}>Nous écrire</a>
+      </div>
+    </div>
+  </section>
+</Base>
