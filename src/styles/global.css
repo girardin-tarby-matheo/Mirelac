@@ -55,7 +55,7 @@
     --ombre: 0 18px 40px -22px rgba(14, 27, 51, .45);
     --courbe: cubic-bezier(.2, .7, .2, 1);
     --vague: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath d='M0,30 C120,56 240,4 360,30 C480,56 600,4 720,30 C840,56 960,4 1080,30 C1200,56 1320,4 1440,30 L1440,60 L0,60 Z'/%3E%3C/svg%3E");
-    --ornement: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 24'%3E%3Cpath d='M0 12 C40 12 62 3 92 6 C106 8 110 16 120 12 C130 16 134 8 148 6 C178 3 200 12 240 12' fill='none' stroke='%23D6C16F' stroke-width='1.4'/%3E%3Cpath d='M120 5 L127 12 L120 19 L113 12 Z' fill='%23D6C16F'/%3E%3C/svg%3E");
+    --ornement: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 40'%3E%3Cpath d='M163 20 C186 20 199 9 221 9 C244 9 257 20 251 28 C247 33 238 31 240 25 C241 21 246 21 247 24' fill='none' stroke='%23D6C16F' stroke-width='1.4' stroke-linecap='round'/%3E%3Cpath d='M163 24 C187 24 201 15 223 15 C237 15 246 20 246 25' fill='none' stroke='%23D6C16F' stroke-width='.8' stroke-linecap='round'/%3E%3Cg transform='translate%28300 0%29 scale%28-1 1%29'%3E%3Cpath d='M163 20 C186 20 199 9 221 9 C244 9 257 20 251 28 C247 33 238 31 240 25 C241 21 246 21 247 24' fill='none' stroke='%23D6C16F' stroke-width='1.4' stroke-linecap='round'/%3E%3Cpath d='M163 24 C187 24 201 15 223 15 C237 15 246 20 246 25' fill='none' stroke='%23D6C16F' stroke-width='.8' stroke-linecap='round'/%3E%3C/g%3E%3Cpath d='M150 11 L159 20 L150 29 L141 20 Z' fill='%23D6C16F'/%3E%3C/svg%3E");
   }
 }
 
@@ -894,6 +894,89 @@ td:first-child { font-family: var(--f-sous); color: var(--bleu); }
   .bulle, .hero__rayons { display: none; }
   .js .reveal { opacity: 1; transform: none; }
 }
+
+/* --------------------------------------------------------------------------
+   Logo officiel (vectorisé depuis la charte) et touches Art nouveau
+   -------------------------------------------------------------------------- */
+.logo .logo__mot { width: 150px; height: auto; aspect-ratio: 698 / 138; }
+.logo--pied { flex-direction: column; align-items: flex-start; gap: 16px; }
+.logo--pied .logo__mono { width: 84px; height: auto; aspect-ratio: 252 / 158; color: var(--or); }
+.logo--pied .logo__mot { width: 210px; }
+
+.hero__contenu { isolation: isolate; }
+.hero__aureole {
+  position: absolute;
+  left: 50%; top: 0;
+  width: min(620px, 96vw);
+  transform: translate(-50%, -24%);
+  color: var(--or);
+  opacity: .32;
+  z-index: -1;
+  pointer-events: none;
+  animation: aureole 160s linear infinite;
+}
+@keyframes aureole { to { transform: translate(-50%, -24%) rotate(360deg); } }
+.hero__titre { display: block; }
+svg.hero__nom, svg.hero__reflet {
+  display: block;
+  width: min(780px, 88vw);
+  height: auto;
+  aspect-ratio: 698 / 138;
+  margin: 0 auto;
+  color: var(--cristal);
+}
+svg.hero__reflet {
+  margin: 4px auto -2%;
+  transform: scaleY(-1);
+  opacity: .28;
+  -webkit-mask: linear-gradient(0deg, #000 30%, transparent 85%);
+  mask: linear-gradient(0deg, #000 30%, transparent 85%);
+}
+p.hero__accroche { margin: 0 auto; }
+.hero__surface { margin-top: 10px; }
+
+/* Coins ornés des cartes */
+.carte:not(.carte--arche)::before {
+  content: "";
+  position: absolute;
+  top: 12px; left: 12px; right: 12px;
+  height: 34px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M3 45 C3 22 22 3 45 3' fill='none' stroke='%23D6C16F' stroke-width='1.1'/%3E%3Cpath d='M3 31 C3 17 14 7 26 6 C33 5.5 36 12 31 14 C28 15 26 12 28 10.5' fill='none' stroke='%23D6C16F' stroke-width='1.1' stroke-linecap='round'/%3E%3Cpath d='M9 9 L12 12 L9 15 L6 12 Z' fill='%23D6C16F'/%3E%3C/svg%3E") left top / 34px no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cg transform='translate%2848 0%29 scale%28-1 1%29'%3E%3Cpath d='M3 45 C3 22 22 3 45 3' fill='none' stroke='%23D6C16F' stroke-width='1.1'/%3E%3Cpath d='M3 31 C3 17 14 7 26 6 C33 5.5 36 12 31 14 C28 15 26 12 28 10.5' fill='none' stroke='%23D6C16F' stroke-width='1.1' stroke-linecap='round'/%3E%3Cpath d='M9 9 L12 12 L9 15 L6 12 Z' fill='%23D6C16F'/%3E%3C/g%3E%3C/svg%3E") right top / 34px no-repeat;
+  pointer-events: none;
+  opacity: .9;
+}
+
+/* Filigrane du monogramme dans les en-têtes de page */
+.page-tete__filigrane {
+  position: absolute;
+  right: max(var(--gouttiere), calc((100vw - var(--max)) / 2));
+  top: 50%;
+  width: min(360px, 38vw);
+  height: auto;
+  aspect-ratio: 252 / 158;
+  transform: translateY(-58%);
+  color: var(--cristal);
+  opacity: .07;
+  pointer-events: none;
+}
+@media (max-width: 760px) { .page-tete__filigrane { opacity: .05; width: 70vw; right: -10vw; } }
+
+/* Titres d'en-tête soulignés d'une vague, comme sur la charte */
+.page-tete h1::after {
+  content: "";
+  display: block;
+  width: 180px;
+  height: 24px;
+  margin-top: 14px;
+  background: var(--ornement) left center / contain no-repeat;
+}
+
+/* Variantes du logo (page Identité) */
+.planche-logos { display: grid; gap: 28px; }
+.planche-logos svg { display: block; height: auto; }
+.planche-logos .mot { aspect-ratio: 698 / 138; }
+.planche-logos .mono { aspect-ratio: 252 / 158; }
+
 }
 
 /* ==========================================================================

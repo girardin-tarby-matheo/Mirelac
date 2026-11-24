@@ -50,8 +50,41 @@ const specimens = [
     </div>
   </section>
 
-  <!-- Blason -->
+  <!-- Logos -->
   <section class="section section--creme">
+    <div class="conteneur">
+      <SectionTete surtitre="Logos" titre="Le mot et le monogramme">
+        <p>Le nom s’écrit en Jana Thork ; le C final se prolonge en une vague, la surface du lac. Le monogramme « MC » reprend le M et cette vague, pour le favicon et les réseaux.</p>
+      </SectionTete>
+      <div class="planche-logos reveal">
+        <div class="carte flex justify-center py-14">
+          <svg class="mot w-full max-w-[640px] text-lagon" viewBox="4 7 698 138" role="img" aria-label="Logo Mirelac, bleu lagon"><use href="#sym-logo" /></svg>
+        </div>
+        <div class="grid gap-7 md:grid-cols-[2fr_1fr]">
+          <div class="carte grid gap-8 py-10">
+            <svg class="mot w-full max-w-[380px] text-amanite" viewBox="4 7 698 138" role="img" aria-label="Logo Mirelac, rouge amanite"><use href="#sym-logo" /></svg>
+            <svg class="mot w-full max-w-[380px] text-soleil" viewBox="4 7 698 138" role="img" aria-label="Logo Mirelac, or soleil"><use href="#sym-logo" /></svg>
+          </div>
+          <div class="carte flex flex-wrap items-center justify-around gap-6 py-10">
+            <svg class="mono w-24 text-amanite" viewBox="2 5 252 158" role="img" aria-label="Monogramme, rouge amanite"><use href="#sym-monogramme" /></svg>
+            <svg class="mono w-24 text-soleil" viewBox="2 5 252 158" role="img" aria-label="Monogramme, or soleil"><use href="#sym-monogramme" /></svg>
+            <svg class="mono w-24 text-lagon" viewBox="2 5 252 158" role="img" aria-label="Monogramme, bleu lagon"><use href="#sym-monogramme" /></svg>
+          </div>
+        </div>
+        <div class="flex flex-wrap items-center justify-between gap-8 rounded-md bg-lagon px-8 py-12 md:px-14">
+          <svg class="mot w-full max-w-[420px] text-cristal" viewBox="4 7 698 138" role="img" aria-label="Logo Mirelac, blanc cristal sur bleu lagon"><use href="#sym-logo" /></svg>
+          <svg class="mono w-28 text-cristal" viewBox="2 5 252 158" role="img" aria-label="Monogramme, blanc cristal sur bleu lagon"><use href="#sym-monogramme" /></svg>
+        </div>
+        <p class="m-0 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <a href={lien("/logo-mirelac.svg")} download>Télécharger le logo (SVG)</a>
+          <a href={lien("/monogramme.svg")} download>Télécharger le monogramme (SVG)</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blason -->
+  <section class="section">
     <div class="conteneur grid items-center gap-12 md:grid-cols-2 md:gap-16">
       <figure class="reveal m-0">
         <Blason />
@@ -64,16 +97,12 @@ const specimens = [
         <p>Un écu partagé horizontalement par une ligne ondulée : la surface du lac. En haut, le château de Comper en silhouette, sobre. En bas, son reflet inversé, devenu un palais de cristal aux tours effilées.</p>
         <p>Au centre de la ligne d’eau, une épée posée à l’horizontale rappelle Lancelot. Trois médaillons, à gauche, à droite et en pointe, portent les symboles des facultés. Un quatrième médaillon, en haut de l’écu, a été martelé jusqu’à la pierre nue.</p>
         <Tableau entetes={["Faculté", "Symbole"]} lignes={[["Viviane", "Un miroir à main"], ["Merlin", "Une étoile à sept branches"], ["Lancelot", "Un écu barré d’une épée"]]} />
-        <div class="flex items-center gap-4.5">
-          <img src={lien("/monogramme.svg")} alt="" width="72" height="72" />
-          <p class="m-0"><strong>Logo simplifié</strong> (favicon, réseaux) : un « M » dont la moitié basse est le reflet inversé de la moitié haute, séparées par une ligne ondulée.</p>
-        </div>
       </div>
     </div>
   </section>
 
   <!-- Couleurs -->
-  <section class="section">
+  <section class="section section--creme">
     <div class="conteneur">
       <SectionTete surtitre="Palette" titre="Couleurs" />
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -90,7 +119,7 @@ const specimens = [
   </section>
 
   <!-- Typographies -->
-  <section class="section section--creme">
+  <section class="section">
     <div class="conteneur">
       <SectionTete surtitre="Typographies" titre="Pierre gravée et plume onciale" />
       <div class="specimen reveal">
@@ -105,7 +134,7 @@ const specimens = [
   </section>
 
   <!-- Motifs et ton -->
-  <section class="section">
+  <section class="section section--creme">
     <div class="conteneur grid gap-6 md:grid-cols-2">
       <div class="carte reveal">
         <h3>Motifs et effets</h3>

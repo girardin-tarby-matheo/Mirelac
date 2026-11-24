@@ -24,7 +24,7 @@ src/
   pages/                   une page par rubrique ; [faculte].astro génère les 3 facultés
   scripts/main.ts          menu, effets d’eau, compteurs, formulaire de contact
   styles/global.css        thème Tailwind (charte) et composants Art nouveau
-public/monogramme.svg      logo simplifié / favicon
+public/                   logo, monogramme MC et favicon (SVG vectorisés depuis la charte)
 ```
 
 ## Charte

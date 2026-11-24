@@ -42,14 +42,23 @@ const actualites = [
 
     <div class="conteneur hero__contenu">
       <p class="eyebrow">Université de Magie · Brocéliande</p>
+      <svg class="hero__aureole" viewBox="0 0 600 600" aria-hidden="true">
+        <circle cx="300" cy="300" r="292" fill="none" stroke="currentColor" stroke-width="1" />
+        <circle cx="300" cy="300" r="278" fill="none" stroke="currentColor" stroke-width=".6" stroke-dasharray="1 7" />
+        <circle cx="300" cy="300" r="250" fill="none" stroke="currentColor" stroke-width=".8" />
+        {Array.from({ length: 12 }, (_, i) => (
+          <path d="M300 2 l6 12 -6 12 -6 -12 z" fill="currentColor" transform={`rotate(${i * 30} 300 300)`} />
+        ))}
+      </svg>
       <h1 class="hero__titre">
-        <span class="hero__nom">Mirelac</span>
-        <span class="hero__accroche">l’université sous le lac</span>
+        <span class="sr-only">Mirelac, l’université sous le lac</span>
+        <svg class="hero__nom" viewBox="4 7 698 138" aria-hidden="true"><use href="#sym-logo" /></svg>
       </h1>
       <svg class="hero__surface" viewBox="0 0 720 22" preserveAspectRatio="none" aria-hidden="true">
         <path d="M0 11 C45 2 75 20 120 11 S195 2 240 11 S315 20 360 11 S435 2 480 11 S555 20 600 11 S675 2 720 11" fill="none" stroke="currentColor" stroke-width="1.4" />
       </svg>
-      <div class="hero__reflet" aria-hidden="true">Mirelac</div>
+      <svg class="hero__reflet" viewBox="4 7 698 138" aria-hidden="true"><use href="#sym-logo" /></svg>
+      <p class="hero__accroche" aria-hidden="true">l’université sous le lac</p>
       <p class="hero__sous-titre">Depuis quinze siècles, on apprend la magie en secret sous l’étang de Comper. Dès septembre 2027, Mirelac ouvre ce savoir à toutes les sorcières et tous les sorciers de France, au cœur de la forêt de Brocéliande.</p>
       <div class="flex flex-wrap justify-center gap-3.5">
         <a class="btn btn--or" href={lien("/histoire")}>Plonger dans Mirelac →</a>
